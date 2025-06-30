@@ -2,13 +2,14 @@
 
 import css from "./NoteDetails.module.css";
 import { HydrationBoundary } from "@tanstack/react-query";
+import type { DehydratedState } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchNoteById } from "@/lib/api";
 import type { Note } from "@/types/note";
 
 type NoteDetailsProps = {
-  dehydratedState: unknown;
+  dehydratedState: DehydratedState;
 };
 
 export default function NoteDetails({ dehydratedState }: NoteDetailsProps) {
