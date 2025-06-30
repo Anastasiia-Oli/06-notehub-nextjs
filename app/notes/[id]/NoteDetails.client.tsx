@@ -43,34 +43,8 @@ const InnerNoteDetails = ({ id }: { id: number }) => {
           <button className={css.editBtn}>Edit note</button>
         </div>
         <p className={css.content}>{note.content}</p>
-        <p className={css.date}>Created date</p>
+        <p className={css.date}>{note.createdAt}</p>
       </div>
     </div>
   );
 };
-
-//   const {
-//     data: note,
-//     isLoading,
-//     isError,
-//   } = useQuery<Note>({
-//     queryKey: ["note", id],
-//     queryFn: () => fetchNoteById(id),
-//   });
-
-//   if (isLoading) return <p>Loading, please wait...</p>;
-//   if (isError || !note) return <p>Something went wrong.</p>;
-
-//   return (
-// <div className={css.container}>
-//   <div className={css.item}>
-//     <div className={css.header}>
-//       <h2>{note.title}</h2>
-//       <button className={css.editBtn}>Edit note</button>
-//     </div>
-//     <p className={css.content}>{note.content}</p>
-//     <p className={css.date}>Created date</p>
-//   </div>
-// </div>
-//   );
-// }

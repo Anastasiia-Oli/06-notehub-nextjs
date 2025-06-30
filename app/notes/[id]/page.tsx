@@ -3,7 +3,7 @@ import { fetchNoteById } from "@/lib/api";
 import NoteDetails from "./NoteDetails.client";
 
 type NoteDetailsProps = {
-  params: { id: number };
+  params: { id: string };
 };
 
 const NoteDetailsPage = async ({ params }: NoteDetailsProps) => {
