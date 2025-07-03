@@ -4,7 +4,7 @@ import type { Note } from "../types/note";
 const API_KEY = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 const BASE_URL = "https://notehub-public.goit.study/api/notes";
 
-interface FetchNotesResponse {
+export interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
 }
@@ -18,7 +18,7 @@ export async function fetchNotes(
     perPage: 12,
   };
 
-  if (query !== "") {
+  if (query.trim() !== "") {
     // add .trim() later
     params.search = query;
   }
@@ -32,7 +32,9 @@ export async function fetchNotes(
   return response.data;
 }
 
-export async function createNote(params: Omit<Note, "id">): Promise<Note> {
+export async function createNote(
+  params: Omit<Note, "id" | "createdAt" | "updatedAt">
+): Promise<Note> {
   const response = await axios.post<Note>(BASE_URL, params, {
     headers: {
       Authorization: `Bearer ${API_KEY}`,

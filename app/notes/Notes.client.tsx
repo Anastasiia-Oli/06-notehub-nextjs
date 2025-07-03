@@ -9,18 +9,27 @@ import Pagination from "@/components/Pagination/Pagination";
 import NoteModal from "@/components/NoteModal/NoteModal";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import { fetchNotes } from "@/lib/api";
+import { FetchNotesResponse } from "@/lib/api";
+import { Note } from "@/types/note";
 
-function Notes() {
+type NotesProps = {
+  notes: Note[];
+  totalPages: number;
+};
+
+function Notes({ notes, totalPages }: NotesProps) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [debouncedQuery] = useDebounce(query, 300);
 
-  const { data } = useQuery({
+  const { data } = useQuery<FetchNotesResponse>({
     queryKey: ["notes", debouncedQuery, page],
     queryFn: () => fetchNotes(debouncedQuery, page),
     // enabled: debouncedQuery !== "",
     placeholderData: keepPreviousData,
+    initialData:
+      page === 1 && debouncedQuery === "" ? { notes, totalPages } : undefined!,
   });
 
   const handleSearch = (searchQuery: string) => {

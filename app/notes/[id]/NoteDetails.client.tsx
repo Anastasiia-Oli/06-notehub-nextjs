@@ -31,6 +31,7 @@ const InnerNoteDetails = ({ id }: { id: number }) => {
   } = useQuery<Note>({
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
   });
 
   if (isLoading) return <p>Loading, please wait...</p>;

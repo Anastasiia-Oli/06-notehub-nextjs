@@ -80,7 +80,7 @@ function NoteForm({ onCancel }: NoteFormProps) {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {(isValid) => (
+      {({ isValid }) => (
         <Form className={css.form}>
           {/* Title field */}
           <div className={css.formGroup}>
@@ -96,7 +96,7 @@ function NoteForm({ onCancel }: NoteFormProps) {
               as="textarea"
               id="content"
               name="content"
-              rows="8"
+              rows={8}
               className={css.textarea}
             />
             <ErrorMessage
